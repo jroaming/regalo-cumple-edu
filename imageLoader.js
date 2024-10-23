@@ -73,7 +73,7 @@ class ImageLoader {
     init() {
         // (0) por cada imagen del array:
         for (var iImg = 0; iImg < IMG_LIST.length; iImg++) {
-            let url = '/img/' + IMG_LIST[iImg];
+            let url = 'img/' + IMG_LIST[iImg];
 
             // (1) generar imagen y guardar el tipo (stance) antes de leerla
             //      index 0 => idle / index 1 => walk / index 2 => attack / index 3 => special 
