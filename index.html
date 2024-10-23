@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="p5.js"></script>
+        <link rel="stylesheet" href="styles.css"/>
+        <script src="utils.js"></script>
+        <script src="imageLoader.js"></script>
+        <script src="keyController.js"></script>
+        <script src="playerController.js"></script>
+        <script src="main.js"></script>
+    </head>
+    
+    <body>
+        <div id="roaster" style="margin-top: 2rem;position: fixed;bottom: 30px; display: flex; flex-direction: column;">
+            <button id="pRubenId" onclick="resetGameWithPlayers('ruben')">Rubén</button>
+            <button id="pEduId" onclick="resetGameWithPlayers('edu')">Eduardo (comunista)</button>
+            <button id="pCorbiId" onclick="resetGameWithPlayers('corbi')">Corbi (ataque IPv4)</button>
+            <button id="pGabiId" onclick="resetGameWithPlayers('gabi')">Gabi (ataque matte)</button>
+            <button id="pMariamId" onclick="resetGameWithPlayers('mariam')">Mariam (ataque C4)</button>
+            <button id="pAnnaId" onclick="resetGameWithPlayers('anna')">Anna (ataque bermut)</button>
+            <button id="pMarioId" onclick="resetGameWithPlayers('mario')">Mario (ataque iPhone)</button>
+            <button id="pCarlosId" onclick="resetGameWithPlayers('carlos')">Carlos (ataque fardo coca)</button>
+        </div>
+
+        <div id="helpControls" style="margin-top: 2rem;position:fixed;bottom: 30px;">
+            <p><span style="color:yellow">WD / LeftRight</span>: move around</p>
+            <p><span style="color:yellow">S / Down</span>: basic attack</p>
+            <p><span style="color:yellow">A / Up</span>: special attack</p>
+        </div>
+    </body>
+</html>
