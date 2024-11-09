@@ -7,6 +7,7 @@ class Player {
     constructor(pName, cnv, oX, oY, images) {
         this.name = pName;
         this.hp = 100;
+        this.stamina = 100;
         
         this.canvas = cnv;
 
@@ -34,6 +35,8 @@ class Player {
     }
 
     update() {
+        if (this.stamina < 100) this.stamina++;
+
         // caminar: avanzar / retroceder
         this.isMoving = this.dx != 0;
         
@@ -61,19 +64,23 @@ class Player {
     }
 
     dxTo(dir) {
-        if (!this.moveEnabled) return;
-
+        if (!this.moveEnabled) return
+        if ((this.x <= 0 && dir <= 0) || (this.x >= VIEWPORT_WIDTH * SCALE && dir >= 0)) return
         this.dx += dir;
     }
 
     attack(enemyPlayer) {
-        if (!this.moveEnabled) return;
+        if (!this.moveEnabled || this.stamina < attackFrames*3) return;
         this.currImage = this.attackImg;
+        this.stamina -= attackFrames*3;
+
+
         this.moveEnabled = false;
         this.stopFrames = attackFrames;
 
         if (Math.abs(this.x - enemyPlayer.x) <= 20 * SCALE) {
             enemyPlayer.hp -= 10;
+            soundController.playHitSFX();
             if (enemyPlayer.hp <= 0) {
                 console.log("Winner!");
                 gameOver();
@@ -82,20 +89,23 @@ class Player {
     }
 
     special(enemyPlayer) {
-        if (!this.moveEnabled) return;
+        if (!this.moveEnabled || this.stamina < specialFrames*2) return;
         this.currImage = this.specialImg;
+        this.stamina -= specialFrames * 2;
+
         this.moveEnabled = false;
         this.stopFrames = specialFrames;
 
         if (Math.abs(this.x - enemyPlayer.x) <= 30 * SCALE) {
             enemyPlayer.hp -= 20;
+            soundController.playSpecialSFX();
             if (enemyPlayer.hp <= 0) {
                 console.log("Winner!");
                 gameOver();
             }
         }
     }
-
+    
     render(flip) {
         
         if (flip) {

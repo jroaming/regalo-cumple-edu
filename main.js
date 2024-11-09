@@ -8,12 +8,17 @@ var gameIsOver = false;
 var p1, p2;
 var newP1, newP2;
 
+
 function preload() {
     imageLoader = new ImageLoader();
     imageLoader.init();
+    
+    soundController = new SoundController();
+    soundController.init();
 }
 
 function setup() {
+
     this.canvas = createCanvas(VIEWPORT_WIDTH * SCALE, VIEWPORT_HEIGHT * SCALE);
     frameRate(60);
     noStroke(); // removes shape outlines
@@ -27,19 +32,14 @@ function draw() {
     clear();
     checkInput();
 
+    // background ost
+    soundController.checkBackgroundMusic();
+
     fill("#FF0000");
     rect(p1.x, p1.y, p1.width*SCALE, 20);
     rect(p2.x, p2.y, p2.width*SCALE, 20);
-
-    // draw ps total life bar (background):
-    fill("#003300");
-    rect(100, 20, 100*2, 20);
-    rect(VIEWPORT_WIDTH * SCALE - 100, 20, -100*2, 20);
-
-    fill("#00FF00");
-    rect(100, 20, p1.hp*2, 20); // draw p1 life bar
-    rect(VIEWPORT_WIDTH * SCALE - 100, 20, -p2.hp*2, 20); // draw p2 life bar
     
+    image(this.imageLoader.backgroundImage, 0, 0, VIEWPORT_WIDTH * SCALE, VIEWPORT_HEIGHT * SCALE);
     p1.update();
     p2.update();
     
@@ -47,6 +47,23 @@ function draw() {
     p1.render(!flip);
     p2.render(flip);
     
+    // draw ps total life bar (background):
+    fill("#003300");
+    rect(100, 20, 100*2, 20);
+    rect(VIEWPORT_WIDTH * SCALE - 100, 20, -100*2, 20);
+    fill("#00FF00");
+    rect(100, 20, p1.hp*2, 20); // draw p1 life bar
+    rect(VIEWPORT_WIDTH * SCALE - 100, 20, -p2.hp*2, 20); // draw p2 life bar
+
+    // draw stamina bar:
+    fill("#333333");
+    rect(100, 40, 100*2, 20);
+    rect(VIEWPORT_WIDTH * SCALE - 100, 40, -100*2, 20);
+    fill("#FFFFFF");
+    rect(100, 40, p1.stamina*2, 20); // draw p1 stamina bar
+    rect(VIEWPORT_WIDTH * SCALE - 100, 40, -p2.stamina*2, 20); // draw p2 listamina bar
+
+
     if (gameIsOver) {
         fill('rgba(0, 0, 0, 0.7)');
         rect(0, 0, VIEWPORT_WIDTH * SCALE, VIEWPORT_HEIGHT * SCALE);
@@ -129,4 +146,14 @@ function resetGameWithPlayers(name) {
         newP2 = null;
         gameIsOver = false;
     }
+}
+
+function toggleAudio() {
+    if (!this.soundController.enable) {
+        this.soundController.enableAudio();
+
+    } else {
+        this.soundController.toggleMusic();
+    }
+    
 }

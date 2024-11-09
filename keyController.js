@@ -1,20 +1,3 @@
-/*
-    nombre: keyController.js
-    descripcion: clase encargada de controlar las acciones del teclado
-
-    funciones:
-        - gestionar las teclas pulsadas y actualizar los bools del player acorde
-    
-    goals:
-        o movimiento del jugador (input)    [x]
-        o controlar fov del jugador (input) [x]
-        o fisheye effect del fov (input)   [x]
-    
-    estado:
-        > terminado
-*/
-
-
 const KeyW = 87; // p1 jump
 const KeyA = 65; // p1 left
 const KeyS = 83; // p1 attack
@@ -49,5 +32,4 @@ function checkInput() {
     if (keyIsDown(keyRightCtrl))    { /* p2 jump */ }
     if (keyIsDown(KeyArrowDown))    { p2.attack(p1) }
     if (keyIsDown(KeyArrowUp))      { p2.special(p1) }
-
 }

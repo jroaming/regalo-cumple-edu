@@ -1,18 +1,3 @@
-/*
-    nombre: imageLoader.js
-    descripcion: clase encargada de leer las imagenes del proyecto y generar las matrices de pixeles
-
-    funciones:
-        - inicializar todas las imagenes del proyecto en precarga
-    
-    goals:
-        o obtener un array con todas las imagenes   [x]
-        o funciones para obtener info optimamente   [x]
-    
-    estado:
-        > terminado
-*/
-
 // si anadimos mas imagenes al proyecto, debemos agregarlas a esta constante para ser leidas
 const IMG_LIST = [
     "char_ruben_idle.png",
@@ -68,9 +53,13 @@ class ImageLoader {
         this.annaImages = [];
         this.marioImages = [];
         this.carlosImages = [];
+        this.backgroundImage;
     }
 
     init() {
+        // load background image
+        this.backgroundImage = loadImage('img/bckg.png');
+
         // (0) por cada imagen del array:
         for (var iImg = 0; iImg < IMG_LIST.length; iImg++) {
             let url = 'img/' + IMG_LIST[iImg];

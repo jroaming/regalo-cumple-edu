@@ -1,16 +1,19 @@
 <html>
     <head>
         <script src="p5.js"></script>
+        <script src="p5-sound.js"></script>
         <link rel="stylesheet" href="styles.css"/>
         <script src="utils.js"></script>
         <script src="imageLoader.js"></script>
         <script src="keyController.js"></script>
         <script src="playerController.js"></script>
+        <script src="soundController.js"></script>
         <script src="main.js"></script>
     </head>
     
     <body>
         <div id="roaster" style="margin-top: 2rem;position: fixed;bottom: 30px; display: flex; flex-direction: column;">
+            <button id="enableAudio" onclick="toggleAudio()">Activar/Desactivar audio</button>
             <button id="pRubenId" onclick="resetGameWithPlayers('ruben')">Rubén</button>
             <button id="pEduId" onclick="resetGameWithPlayers('edu')">Eduardo (comunista)</button>
             <button id="pCorbiId" onclick="resetGameWithPlayers('corbi')">Corbi (ataque IPv4)</button>
